@@ -6,7 +6,7 @@
 #    By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 09:41:14 by fvon-nag          #+#    #+#              #
-#    Updated: 2023/01/27 12:06:36 by fvon-nag         ###   ########.fr        #
+#    Updated: 2023/01/27 12:51:37 by fvon-nag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ NAME = minitalk
 SEVER = server
 CLIENT = client
 
-SERVER_DIR = ./src/server
-CLIENT_DIR = ./src/client
+SERVER_DIR = ./sources/server
+CLIENT_DIR = ./sources/client
 OBJ_DIR = ./obj
 
 PRINTF_DIR = ./ft_printf
@@ -42,7 +42,7 @@ all: ${NAME}
 
 $(NAME) : $(LIBFT) $(PRINTF) $(OBJ_DIR) $(SERVER) $(CLIENT)
 
-$(OBJ_DIR)
+$(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(SERVER): $(SERVER_OBJECTS)
@@ -50,13 +50,26 @@ $(SERVER): $(SERVER_OBJECTS)
 
 $(CLIENT): $(CLIENT_OBJECTS)
 	$(CC) $(CLIENT_OBJECTS) -o $(CLIENT) $(LFLAGS)
-clean :
-	make -C ft_printf clean
-	make -C libft clean
-	rm -f $(OBJECTS)
-fclean : clean
-	make -C ft_printf fclean
-	make -C libft fclean
-	rm -f $(NAME)
+
+$(OBJ_DIR)/%.o: $(SERVER_DIR)/%.c $(HEADERS)
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(CLIENT_DIR)/%.c $(HEADERS)
+	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+$(PRINTF):
+	make -C $(PRINTF_DIR)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+clean:
+	$(RM) $(SERVER_OBJS) $(CLIENT_OBJS)
+
+fclean: clean
+	make -C $(LIBFT_DIR) fclean
+	$(RM) $(SERVER)
+	$(RM) $(CLIENT)
+
 re : fclean all
 
