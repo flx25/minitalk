@@ -6,7 +6,7 @@
 #    By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 09:41:14 by fvon-nag          #+#    #+#              #
-#    Updated: 2023/01/27 12:51:37 by fvon-nag         ###   ########.fr        #
+#    Updated: 2023/01/27 13:58:19 by fvon-nag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ clean:
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
+	make -C $(PRINTF_DIR) fclean
 	$(RM) $(SERVER)
 	$(RM) $(CLIENT)
 
