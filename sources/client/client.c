@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:46:07 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/01/30 12:50:24 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:27:05 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,26 @@ char	*ascii_to_binary(const char *str)
 	char	*out;
 	int		len;
 	int		binary_len;
-	unsigned char ch;
 
 	len = ft_strlen(str);
 	out = malloc((len * 8 + 1) * sizeof(char));
 	if (!out)
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (i < len)
+	while (i++ < len)
 	{
-		ch = str[i++];
 		j = 7;
+		while (j >= 0)
+		{
+			if (str[i] & (1 << j))
+				out[binary_len++] = '1';
+			else
+				out[binary_len++] = '0';
+			j--;
+		}
 	}
-	utf8_str[j] = '\0';
-	return (utf8_str);
+	out[binary_len] = '\0';
+	return (out);
 }
 
 int	sendstring(int pid, char *str)
@@ -42,7 +47,7 @@ int	sendstring(int pid, char *str)
 	char	*convstr;
 
 	convstr = ascii_to_binary(str);
-	ft_printf("the converted code is ");
+	ft_printf("the converted code is %s", convstr);
 }
 
 int	main(int argc, char **argv)
