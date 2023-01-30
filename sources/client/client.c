@@ -6,63 +6,43 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:46:07 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/01/30 11:59:07 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:50:24 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int	utf_len(const char *str)
+char	*ascii_to_binary(const char *str)
 {
-	int	len;
-	int	i;
-	int	utf8_len;
+	int		j;
+	int		i;
+	char	*out;
+	int		len;
+	int		binary_len;
+	unsigned char ch;
 
 	len = ft_strlen(str);
-	i = 0;
-	utf8_len = 0;
-	while (i < len)
-	{
-		if (str[i] < 0x80)
-			utf8_len++;
-		else
-			utf8_len += 2;
-	}
-	return (utf8_len);
-}
-
-unsigned char	*ascii_to_utf8(const char *str)
-{
-	int				j;
-	int				i;
-	unsigned char	*utf8_str;
-	int				len;
-
-	len = ft_strlen(str);
-	utf8_str = malloc(utf_len(str) + 1);
-	if (!utf8_str)
+	out = malloc((len * 8 + 1) * sizeof(char));
+	if (!out)
 		return (NULL);
 	i = 0;
 	j = 0;
 	while (i < len)
 	{
-		if (str[i] < 0x80)
-			utf8_str[j++] = str[i];
-		else
-		{
-			utf8_str[j++] = 0xC0 | (str[i] >> 6);
-			utf8_str[j++] = 0x80 | (str[i] & 0x3F);
-		}
-		i++;
+		ch = str[i++];
+		j = 7;
 	}
 	utf8_str[j] = '\0';
 	return (utf8_str);
 }
 
-int	sendstring(int PID, char *str)
+int	sendstring(int pid, char *str)
 {
-	ascii_to_utf8();
+	char	*convstr;
+
+	convstr = ascii_to_binary(str);
+	ft_printf("the converted code is ");
 }
 
 int	main(int argc, char **argv)
