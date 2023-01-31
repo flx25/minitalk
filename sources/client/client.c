@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:46:07 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/01/30 13:48:19 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/01/31 11:07:42 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,22 @@ char	*ascii_to_binary(const char *str)
 	return (*out = '\0', out - len * 8);
 }
 
-int	sendstring(int pid, char *str)
+void	sendstring(int pid, char *str)
 {
 	char	*convstr;
+	int		i;
 
 	convstr = ascii_to_binary(str);
+	i = 0;
 	ft_printf("the converted code is %s", convstr);
-	kill(pid, SIGUSR1);
-	return (0);
+	while (convstr[i] != '\0')
+	{
+		if (convstr[i] == '0')
+			kill(pid, SIGUSR1);
+		if (convstr[i] == '1')
+			kill(pid, SIGUSR2);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
