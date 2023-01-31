@@ -6,12 +6,12 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:46:07 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/01/31 11:07:42 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/01/31 11:44:44 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
+#include "../../libft/libft.h"
+#include "../../ft_printf/ft_printf.h"
 #include <signal.h>
 
 char	*ascii_to_binary(const char *str)

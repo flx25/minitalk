@@ -6,14 +6,14 @@
 #    By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 09:41:14 by fvon-nag          #+#    #+#              #
-#    Updated: 2023/01/31 11:12:44 by fvon-nag         ###   ########.fr        #
+#    Updated: 2023/01/31 14:43:54 by fvon-nag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
 NAME = minitalk
-SEVER = server
+SERVER = server
 CLIENT = client
 
 SERVER_DIR = ./sources/server
@@ -26,7 +26,7 @@ PRINTF = $(PRINTF_DIR)/libftprintf.a
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SERVER_FILES :=
+SERVER_FILES := server.c
 
 CLIENT_FILES := client.c
 
@@ -36,7 +36,7 @@ LFLAGS = -L./libft -L./ft_printf -lftprintf -lft
 SERVER_OBJECTS = $(addprefix $(OBJ_DIR)/, $(SERVER_FILES:.c=.o))
 CLIENT_OBJECTS = $(addprefix $(OBJ_DIR)/, $(CLIENT_FILES:.c=.o))
 
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror -g
 
 all: ${NAME}
 
@@ -64,7 +64,7 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 clean:
-	$(RM) $(SERVER_OBJS) $(CLIENT_OBJS)
+	$(RM) $(SERVER_OBJECTS) $(CLIENT_OBJECTS)
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean
