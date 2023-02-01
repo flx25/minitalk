@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 09:24:43 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/01 10:24:27 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/01 11:26:27 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # include <signal.h>
 
-# undef sa_handler
+//# undef sa_handler
 
-struct			s_sigaction
-{
-	void		(*my_handler)(int);
-	sigset_t	sa_mask;
-	int			sa_flags;
-};
+// struct			s_sigaction
+// {
+// 	void		(*my_handler)(int);
+// 	sigset_t	sa_mask;
+// 	int			sa_flags;
+// };
 
 #endif
