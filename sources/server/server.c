@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/01 11:44:02 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/01 14:23:11 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,7 @@
 #include "../../libft/libft.h"
 #include "../../ft_printf/ft_printf.h"
 
-void	handler(int sig, char *out)
-{
-	if (sig == SIGUSR1)
-		out = gnl_strjoin(out, "0");
-	if (sig == SIGUSR2)
-		out = gnl_strjoin(out, "1");
-
-	ft_printf("the binary string is %s", out);
-}
+char			*g_out; // maybe change this one to local
 
 char	*gnl_strjoin(char *str, char *buff)
 {
@@ -54,13 +46,23 @@ char	*gnl_strjoin(char *str, char *buff)
 	return (nstr);
 }
 
+
+void	handler(int sig)
+{
+	if (sig == SIGUSR1)
+		g_out = gnl_strjoin(g_out, "0");
+	if (sig == SIGUSR2)
+		g_out = gnl_strjoin(g_out, "1");
+	ft_printf("the binary string is %s", g_out);
+}
+
+
+
 int	main(void)
 {
 	struct sigaction	sa;
-	char				*out;
 
-	out = ft_calloc(1, sizeof(char));
-	sa.sa_handler = &handler;
+	sa.sa_handler = (void (*)(int))handler;
 	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaddset(&sa.sa_mask, SIGUSR2);
 	sigaction(SIGUSR1, &sa, NULL);
