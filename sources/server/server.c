@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/01 15:22:03 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:59:43 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,22 @@ char	*gnl_strjoin(char *str, char *buff)
 	return (nstr);
 }
 
-
 void	handler(int sig)
 {
+	static int	count;
+
 	if (sig == SIGUSR1)
+	{
 		g_out = gnl_strjoin(g_out, "0");
+		count++;
+	}
 	if (sig == SIGUSR2)
-		g_out = gnl_strjoin(g_out, "1");
-	ft_printf("the binary string is %s\n", g_out);
+	{
+			g_out = gnl_strjoin(g_out, "1");
+			count = 0;
+	}
+	if (count == 8)
+		ft_printf("the binary string with nt is %s\n", g_out);
 }
 
 

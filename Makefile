@@ -6,7 +6,7 @@
 #    By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 09:41:14 by fvon-nag          #+#    #+#              #
-#    Updated: 2023/01/31 14:43:54 by fvon-nag         ###   ########.fr        #
+#    Updated: 2023/02/01 16:50:42 by fvon-nag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,10 +46,10 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(SERVER): $(SERVER_OBJECTS)
-	$(CC) $(SERVER_OBJECTS) -o $(SERVER) $(LFLAGS)
+	$(CC) $(CFLAGS) $(SERVER_OBJECTS) -o $(SERVER) $(LFLAGS)
 
 $(CLIENT): $(CLIENT_OBJECTS)
-	$(CC) $(CLIENT_OBJECTS) -o $(CLIENT) $(LFLAGS)
+	$(CC) $(CFLAGS) $(CLIENT_OBJECTS) -o $(CLIENT) $(LFLAGS)
 
 $(OBJ_DIR)/%.o: $(SERVER_DIR)/%.c $(HEADERS)
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
