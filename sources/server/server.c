@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/01 14:23:11 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:22:03 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	handler(int sig)
 		g_out = gnl_strjoin(g_out, "0");
 	if (sig == SIGUSR2)
 		g_out = gnl_strjoin(g_out, "1");
-	ft_printf("the binary string is %s", g_out);
+	ft_printf("the binary string is %s\n", g_out);
 }
 
 
@@ -61,6 +61,7 @@ void	handler(int sig)
 int	main(void)
 {
 	struct sigaction	sa;
+	int					state;
 
 	sa.sa_handler = (void (*)(int))handler;
 	sigaddset(&sa.sa_mask, SIGUSR1);
@@ -68,6 +69,8 @@ int	main(void)
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	ft_printf("The Server PID is %i \n", (int) getpid());
+	state = 1;
 	while (1)
 		sleep(0);
+	ft_printf("convert string jetzt");
 }
