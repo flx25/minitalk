@@ -6,7 +6,7 @@
 #    By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 09:41:14 by fvon-nag          #+#    #+#              #
-#    Updated: 2023/02/02 11:50:55 by fvon-nag         ###   ########.fr        #
+#    Updated: 2023/02/02 13:38:59 by fvon-nag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ CFLAGS = -Wall -Wextra -Werror
 $(NAME) : all
 
 all: server client
-
-bonus: server client
 
 server: server.o libft printf
 	$(CC) $(CFLAGS) -o $@ $< -Llibft -lft -Lft_printf -lftprintf
