@@ -6,14 +6,14 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/02 10:41:44 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:46:20 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <signal.h>
-#include "../../libft/libft.h"
-#include "../../ft_printf/ft_printf.h"
+#include "libft/libft.h"
+#include "ft_printf/ft_printf.h"
 
 char			*g_out; // maybe change this one to local
 
