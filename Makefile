@@ -6,7 +6,7 @@
 #    By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 09:41:14 by fvon-nag          #+#    #+#              #
-#    Updated: 2023/02/01 16:50:42 by fvon-nag         ###   ########.fr        #
+#    Updated: 2023/02/02 10:13:28 by fvon-nag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ LFLAGS = -L./libft -L./ft_printf -lftprintf -lft
 SERVER_OBJECTS = $(addprefix $(OBJ_DIR)/, $(SERVER_FILES:.c=.o))
 CLIENT_OBJECTS = $(addprefix $(OBJ_DIR)/, $(CLIENT_FILES:.c=.o))
 
-CFLAGS += -Wall -Wextra -Werror -g
+CFLAGS += -Wall -Wextra -Werror
 
 all: ${NAME}
 
