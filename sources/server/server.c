@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/01 16:59:43 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/02 09:45:39 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,32 @@ char	*gnl_strjoin(char *str, char *buff)
 	return (nstr);
 }
 
+void	decrypt(void)
+{
+	int		len;
+	int		i;
+	int		j;
+	char	ascii;
+	int		sum;
+
+	len = ft_strlen(g_out);
+	i = 0;
+	while (i < len - 8)
+	{
+		j = i;
+		sum = 0;
+		while (j < i + 8)
+		{
+			sum = (sum << 1) + (g_out[j] - '0');
+			j++;
+		}
+		ascii = (char) sum;
+		write(1, &ascii, 1);
+		i += 8;
+	}
+	ft_memset(g_out, '0', len);
+}
+
 void	handler(int sig)
 {
 	static int	count;
@@ -61,10 +87,8 @@ void	handler(int sig)
 			count = 0;
 	}
 	if (count == 8)
-		ft_printf("the binary string with nt is %s\n", g_out);
+		decrypt();
 }
-
-
 
 int	main(void)
 {
