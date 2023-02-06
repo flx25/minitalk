@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/06 11:29:10 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/06 13:57:45 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	handler(int sig, siginfo_t *client)
 		count = 0;
 		sum = 0;
 	}
+	usleep(25);
 	kill(client->si_pid, SIGUSR1);
 }
 
