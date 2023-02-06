@@ -6,7 +6,7 @@
 #    By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 09:41:14 by fvon-nag          #+#    #+#              #
-#    Updated: 2023/02/06 09:40:33 by fvon-nag         ###   ########.fr        #
+#    Updated: 2023/02/06 10:04:33 by fvon-nag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 $(NAME) : all
+
+bonus : all
 
 all: server client
 
