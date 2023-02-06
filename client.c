@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:46:07 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/06 10:37:36 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:07:21 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	handler(int sig)
 {
 	if (sig == SIGUSR1)
 		g_send = 1;
+
 }
 
 char	*ascii_to_binary(const char *str)
@@ -63,8 +64,9 @@ void	sendstring(int pid, char *str)
 			kill(pid, SIGUSR1);
 		if (convstr[i] == '1')
 			kill(pid, SIGUSR2);
+		g_send = 0;
 		i++;
-		usleep(10);
+		usleep(5);
 	}
 	free(convstr);
 }
@@ -74,7 +76,9 @@ int	main(int argc, char **argv)
 	int					pid;
 	struct sigaction	sa;
 
-	sa.sa_handler = (void (*)(int))handler;
+	sa.sa_handler = handler;
+	sigaddset(&sa.sa_mask, SIGUSR1);
+	sigaction(SIGUSR1, &sa, NULL);
 	if (argc != 3)
 		ft_printf("Please enter the server PID and a string to send!");
 	else if (argv[1][0] == '\0')

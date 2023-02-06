@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/06 10:36:37 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:07:40 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft/libft.h"
 #include "ft_printf/ft_printf.h"
 
-void	handler(int sig)
+void	handler(int sig, siginfo_t *client)
 {
 	static int	count;
 	static int	sum;
@@ -38,7 +38,7 @@ void	handler(int sig)
 		count = 0;
 		sum = 0;
 	}
-	//kill(client->si_pid, SIGUSR1);
+	kill(client->si_pid, SIGUSR1);
 }
 
 int	main(void)
