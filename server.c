@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/06 13:57:45 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:53:58 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	handler(int sig, siginfo_t *client)
 		count = 0;
 		sum = 0;
 	}
-	usleep(25);
+	usleep(50);
 	kill(client->si_pid, SIGUSR1);
 }
 
@@ -46,6 +46,7 @@ int	main(void)
 {
 	struct sigaction	sa;
 
+	ft_memset(&sa, 0, sizeof(sa));
 	ft_printf("The Server PID is %i \n", (int) getpid());
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_handler = (void (*)(int))handler;

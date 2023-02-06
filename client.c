@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:46:07 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/06 13:53:26 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:59:00 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,11 @@ void	sendstring(int pid, char *str)
 			kill(pid, SIGUSR1);
 		if (convstr[i] == '1')
 			kill(pid, SIGUSR2);
-		g_send = 0;
 		i++;
+		g_send = 0;
 		while (!g_send)
 			pause();
+		usleep(50);
 	}
 	free(convstr);
 }
@@ -77,9 +78,10 @@ int	main(int argc, char **argv)
 	int					pid;
 	struct sigaction	sa;
 
+	ft_memset(&sa, 0, sizeof(sa));
 	sa.sa_handler = handler;
-	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaction(SIGUSR1, &sa, NULL);
+	sigaddset(&sa.sa_mask, SIGUSR1);
 	if (argc != 3)
 		ft_printf("Please enter the server PID and a string to send!");
 	else if (argv[1][0] == '\0')
