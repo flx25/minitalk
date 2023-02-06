@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 09:46:07 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/06 11:09:38 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:34:49 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ void	sendstring(int pid, char *str)
 			kill(pid, SIGUSR2);
 		g_send = 0;
 		i++;
-		while (g_send == 0)
-			usleep(5);
+		usleep(4);
+		if (g_send == 0)
+			usleep(10);
 	}
 	free(convstr);
 }
