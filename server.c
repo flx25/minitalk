@@ -6,7 +6,7 @@
 /*   By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:13:09 by fvon-nag          #+#    #+#             */
-/*   Updated: 2023/02/06 14:53:58 by fvon-nag         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:07:02 by fvon-nag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	main(void)
 	sigaddset(&sa.sa_mask, SIGUSR2);
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-
 	while (1)
 		sleep(0);
 }
