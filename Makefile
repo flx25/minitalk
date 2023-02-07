@@ -6,7 +6,7 @@
 #    By: fvon-nag <fvon-nag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 09:41:14 by fvon-nag          #+#    #+#              #
-#    Updated: 2023/02/06 15:47:32 by fvon-nag         ###   ########.fr        #
+#    Updated: 2023/02/07 08:55:37 by fvon-nag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,11 @@ NAME = minitalk
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-$(NAME) : all
+$(NAME) : server client
 
 bonus : server_bonus client_bonus
 
-all: server client
+all: server client server_bonus client_bonus
 
 server: server.o libft printf
 	$(CC) $(CFLAGS) -o $@ $< -Llibft -lft -Lft_printf -lftprintf
